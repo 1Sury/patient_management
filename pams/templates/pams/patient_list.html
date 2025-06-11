@@ -1,9 +1,22 @@
-{% extends 'pams/base.html' %} {% block title %}Patient List{% endblock %} {% block header %}Patient List{% endblock %} {% block content %}
+{% extends 'pams/base.html' %} {% block title %}Patient List{% endblock %} {% block header %} Patient List
+<div class="ml-auto">
+    <a href="{% url 'logout' %}" class="btn btn-danger">Logout</a>
+</div>
+{% endblock %} {% block content %}
 <div class="card">
     <div class="card-header">
         <h4>Patients</h4>
+        <div class="card-header-action">
+            <a href="{% url 'add_patient' %}" class="btn btn-primary">Add Patient</a>
+        </div>
     </div>
     <div class="card-body">
+        <form method="get" class="form-inline mb-3">
+            <div class="form-group">
+                <input type="text" name="search" class="form-control" placeholder="Search by full name" value="{{ request.GET.search }}">
+                <button type="submit" class="btn btn-primary ml-2">Search</button>
+            </div>
+        </form>
         <div class="table-responsive">
             <table class="table table-striped">
                 <thead>
